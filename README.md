@@ -19,3 +19,20 @@
 ![webpack work charts](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_1031000-160bc667d3b6093a.png)
 
 ## How to use
+1. Install webpack globally via npm  
+```
+    npm install webpack
+```
+
+2. Initialize the package.json file
+```
+    npm init
+```
+
+3. Install webpack in the project
+```
+    npm install webpack --save-dev
+```
+> --save-dev is dependent on the development time, --save is also dependent on the release of things
+
+4. 
