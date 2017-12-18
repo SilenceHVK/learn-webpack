@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/SilenceHVK/learn-webpack/issues"
   },
-  "homepage": "https://github.com/SilenceHVK/learn-webpack#readme"
+  "homepage": "https://github.com/SilenceHVK/learn-webpack#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
 }
