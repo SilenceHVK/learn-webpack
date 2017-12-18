@@ -1,0 +1,23 @@
+{
+  "name": "learn-webpack",
+  "version": "1.0.0",
+  "description": "example code for learning webpack(用于学习 Webpack 的实例代码)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SilenceHVK/learn-webpack.git"
+  },
+  "keywords": [
+    "webpack",
+    "learn-webpack"
+  ],
+  "author": "hvkcoder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SilenceHVK/learn-webpack/issues"
+  },
+  "homepage": "https://github.com/SilenceHVK/learn-webpack#readme"
+}
