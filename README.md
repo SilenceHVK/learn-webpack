@@ -19,7 +19,7 @@
 ![webpack work charts](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_1031000-160bc667d3b6093a.png)
 
 ## How to use
-1. Install webpack globally via npm  
+1. Install webpack globally via npm  
 ```
     npm install webpack
 ```
@@ -36,4 +36,3 @@
 > --save-dev is dependent on the development time, --save is also dependent on the release of things
 
 ## 通过命令对项目中的 JS 文件进行打包
-
