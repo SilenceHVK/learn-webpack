@@ -58,3 +58,14 @@
 - ``` --display-reasons ``` Display reasons about module inclusion in the  output.
 
 &ensp;&ensp;More parameters can be viewd by the command ``` webpack --help ```
+
+## Four core cocnepts in webpack
+1. [entry]()
+2. [output]()
+3. [loader]()
+4. [plugins]()
+
+### entry
+### output
+### loader
+### plugins
