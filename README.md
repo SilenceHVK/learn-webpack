@@ -18,7 +18,7 @@
 
 ![webpack work charts](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_1031000-160bc667d3b6093a.png)
 
-## webpack installation and use
+## webpack installation and use [Demo1](https://github.com/SilenceHVK/learn-webpack/tree/master/demo1)
 
 1. Install [webpack](https://www.npmjs.com/package/webpack) golbally via npm.
 ```bash
@@ -60,12 +60,12 @@
 &ensp;&ensp;More parameters can be viewd by the command ``` webpack --help ```
 
 ## Four core cocnepts in webpack
-1. [entry]()
-2. [output]()
-3. [loader]()
-4. [plugins]()
+1. [Entry](#user-content-entry)
+2. [Output](#user-content-output)
+3. [Loaders](#user-content-loaders)
+4. [Plugins](#user-content-plugins)
 
-### entry
-### output
-### loader
-### plugins
+### Entry
+### Output
+### Loaders
+### Plugins
