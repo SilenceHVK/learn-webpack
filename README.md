@@ -19,21 +19,21 @@
 ![webpack work charts](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_1031000-160bc667d3b6093a.png)
 
 ## How to use
-1. Install webpack globally via npm  
-```
-    npm install webpack
+
+&ensp;&ensp; First, install [webpack](https://www.npmjs.com/package/webpack) golbally via npm.
+```bash
+    $ npm install webpack
 ```
 
-2. Initialize the package.json file
-```
-    npm init
-```
+&ensp;&ensp; Then, clone the repo and install the dependencies.
+```bash
+    # Linux & Mac
+    $ git clone git@github.com:SilenceHVK/learn-webpack.git
 
-3. Install webpack in the project
+    # Window
+    $ git clone git@github.com/SilenceHVK/learn-webpack.git
+    :
+    $ cd learn-webpack
+    $ npm install
 ```
-    npm install webpack --save-dev
-```
-> --save-dev is dependent on the development time, --save is also dependent on the release of things
-
-### For example demo1
 
