@@ -31,13 +31,13 @@
     $ npm init
 ```
 
-3. Install webpack in the project
+3. Install webpack in the project.
 ```bash
     $ npm install webpack --save-dev
 ```
-> --save-dev is dependent on the development time, - save is also dependent on the release of things
+> --save-dev is dependent on the development time, - save is also dependent on the release of things.
 
-4. Create the following file structure in the project
+4. Create the following file structure in the project.
 <pre>
 .        
 ├── index.html  // 显示的网页
@@ -45,8 +45,16 @@
 └── bundle.js // 通过 webpack 命令生成的文件，无需创建
 </pre>
 
-5. Package the js files dependent on the project with the command
+5. Package the js files dependent on the project with the command.
 ```bash
     # webpack Js file name to be packaged. Generated after the package js file name.
     $ webpack main.js bundle.js
 ```
+
+&ensp;&ensp;Following the webpackage command can also add the following parameters.
+- ``` --watch ``` Real-time packaging.
+- ``` --progress ``` Display package progress.
+- ``` --display-modules ``` Display the packaged modules
+- ``` --display-reasons ``` Display reasons about module inclusion in the  output.
+
+&ensp;&ensp;More parameters can be viewd by the command ``` webpack --help ```
