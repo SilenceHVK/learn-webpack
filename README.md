@@ -18,22 +18,35 @@
 
 ![webpack work charts](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_1031000-160bc667d3b6093a.png)
 
-## How to use
+## webpack installation and use
 
-&ensp;&ensp; First, install [webpack](https://www.npmjs.com/package/webpack) golbally via npm.
+1. Install [webpack](https://www.npmjs.com/package/webpack) golbally via npm.
 ```bash
-    $ npm install webpack
+    $ npm install -g webpack
 ```
 
-&ensp;&ensp; Then, clone the repo and install the dependencies.
+2. Create the project and initialize the package.json file.
 ```bash
-    # Linux & Mac
-    $ git clone git@github.com:SilenceHVK/learn-webpack.git
-
-    # Window
-    $ git clone git@github.com/SilenceHVK/learn-webpack.git
-    :
-    $ cd learn-webpack
-    $ npm install
+    $ mkdir demo1 && cd demo1
+    $ npm init
 ```
 
+3. Install webpack in the project
+```bash
+    $ npm install webpack --save-dev
+```
+> --save-dev is dependent on the development time, - save is also dependent on the release of things
+
+4. Create the following file structure in the project
+<pre>
+.        
+├── index.html  // 显示的网页
+├── main.js    // webpack 入口
+└── bundle.js // 通过 webpack 命令生成的文件，无需创建
+</pre>
+
+5. Package the js files dependent on the project with the command
+```bash
+    # webpack Js file name to be packaged. Generated after the package js file name.
+    $ webpack main.js bundle.js
+```
