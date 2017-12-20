@@ -18,7 +18,7 @@
 
 ![webpack work charts](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_1031000-160bc667d3b6093a.png)
 
-## webpack installation and use [Demo1](https://github.com/SilenceHVK/learn-webpack/tree/master/demo1)
+## webpack installation and use （[Demo1 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo1)）
 
 1. Install [webpack](https://www.npmjs.com/package/webpack) golbally via npm.
 ```bash
