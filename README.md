@@ -1,20 +1,20 @@
 # Learn-Webpack [阅读中文](https://github.com/SilenceHVK/articles/issues/20)
 
 ## About Webpack 
-&ensp;&ensp; Webpack is module loader developed by German developer Tobias Koppers.
+Webpack is module loader developed by German developer Tobias Koppers.
 
-&ensp;&ensp; All files in webpack will be used as modules. When webpack processes an application, it recursively builds a dependency graph that contains every module the application needs, and then packages all those modules into one or more bundles.
+All files in webpack will be used as modules. When webpack processes an application, it recursively builds a dependency graph that contains every module the application needs, and then packages all those modules into one or more bundles.
 
 ![What can webpack do?](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_what-is-webpack.png)
 
 ## Contrast with Gulp/Grunt
-&ensp;&ensp; Webpack is not comparable to Gupl/Grunt because Gupl/Grunt is a tool that optimizes the front-end development process and webpack is a modular solution. However, the advantages of webpack make webpack in many scenarios can replace Gulp/Grunt category of tools.
+Webpack is not comparable to Gupl/Grunt because Gupl/Grunt is a tool that optimizes the front-end development process and webpack is a modular solution. However, the advantages of webpack make webpack in many scenarios can replace Gulp/Grunt category of tools.
 
-&ensp;&ensp; Grunt and Gulp work in the following ways: In a configuration file,you specify the specific steps to perform similar tasks such as compiling, assembling, and compressing certain files taht the tool can then automate for you.
+Grunt and Gulp work in the following ways: In a configuration file,you specify the specific steps to perform similar tasks such as compiling, assembling, and compressing certain files taht the tool can then automate for you.
 
 ![Grunt and Gulp work charts](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_gulp-grunt.png)
 
-&ensp;&ensp; Webpack work in the following ways: Think of your project as a whole, and through a given master file (eg,index.js), Webpack will find all the dependencies for your project from this file, process them with loaders, and finally package it into on (or more) browser-aware JavaScript file.
+Webpack work in the following ways: Think of your project as a whole, and through a given master file (eg,index.js), Webpack will find all the dependencies for your project from this file, process them with loaders, and finally package it into on (or more) browser-aware JavaScript file.
 
 ![webpack work charts](http://images.cnblogs.com/cnblogs_com/hvkcode/966655/o_1031000-160bc667d3b6093a.png)
 
@@ -52,13 +52,13 @@
     $ webpack main.js bundle.js
 ```
 
-&ensp;&ensp;Following the webpackage command can also add the following parameters.
+Following the webpackage command can also add the following parameters.
 - ``` --watch ``` Real-time packaging.
 - ``` --progress ``` Display package progress.
 - ``` --display-modules ``` Display the packaged modules.
 - ``` --display-reasons ``` Display reasons about module inclusion in the  output.
 
-&ensp;&ensp;More parameters can be viewd by the command ``` webpack --help ``` .
+More parameters can be viewd by the command ``` webpack --help ``` .
 
 ## Four core cocnepts in webpack（[Demo2 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo2)）
 1. [Entry](#user-content-entry)
@@ -66,7 +66,7 @@
 3. [Loaders](#user-content-loaders)
 4. [Plugins](#user-content-plugins)
 
-&ensp;&ensp;The default configuration file name in webpack is webpack.config.json,so we need to create the following file in the project:
+The default configuration file name in webpack is webpack.config.json,so we need to create the following file in the project:
 <pre>
 .        
 ├── index.html            // Web page display
@@ -76,9 +76,9 @@
 </pre>
 
 ### Entry
-&ensp;&ensp;The entry point indicates which module webpack should use as the start of building its internal dependency graph.
+The entry point indicates which module webpack should use as the start of building its internal dependency graph.
 
-&ensp;&ensp;You can configure the entry property in webpack.config.js to specify an entry of multiple entry points as follows:
+You can configure the entry property in webpack.config.js to specify an entry of multiple entry points as follows:
 ```javascript
     module.exports = {
         entry: './path/entryFile.js'
@@ -86,7 +86,7 @@
 ```
 
 ### Output
-&ensp;&ensp;The output property tells webpack where to emit the bundles it creates and how to name these files. You can configure this part of the process by specifying an output field in your configuration:
+The output property tells webpack where to emit the bundles it creates and how to name these files. You can configure this part of the process by specifying an output field in your configuration:
 ```javascript
     const path = require('path')
 
@@ -98,7 +98,7 @@
         }
     }
 ```
-&ensp;&ensp; The output.path property is used to specify the path to the generated file, and output.filename is used to specify the name of the generated file.
+The output.path property is used to specify the path to the generated file, and output.filename is used to specify the name of the generated file.
 
 ### Loaders
 
@@ -106,7 +106,7 @@
 
 ### Plugins
 
-&ensp;&ensp; If you want to change default profile name, you can configur in package.json.
+If you want to change default profile name, you can configur in package.json.
 ```bash
 
 ```
