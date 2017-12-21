@@ -60,7 +60,7 @@
 
 &ensp;&ensp;More parameters can be viewd by the command ``` webpack --help ``` .
 
-## Four core cocnepts in webpack
+## Four core cocnepts in webpack（[Demo2 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo2)）
 1. [Entry](#user-content-entry)
 2. [Output](#user-content-output)
 3. [Loaders](#user-content-loaders)
@@ -76,6 +76,15 @@
 </pre>
 
 ### Entry
+&ensp;&ensp;The entry point indicates which module webpack should use as the start of building its internal dependency graph.
+
+&ensp;&ensp;You can configure the entry property in webpack.config.js to specify an entry of multiple entry points as follows:
+```javascript
+    module.exports = {
+        entry: './path/entryFile.js'
+    }
+```
+
 ### Output
 ### Loaders
 ### Plugins
