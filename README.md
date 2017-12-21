@@ -86,9 +86,24 @@
 ```
 
 ### Output
+&ensp;&ensp;The output property tells webpack where to emit the bundles it creates and how to name these files. You can configure this part of the process by specifying an output field in your configuration:
+```javascript
+    const path = require('path')
+
+    module.exports = {
+        entry: './path/entryFile.js',
+        output: {
+            path: path.resolve(__dirname,'dist'),
+            filename: 'my-webpack.bundle.js'
+        }
+    }
+```
+&ensp;&ensp; The output.path property is used to specify the path to the generated file, and output.filename is used to specify the name of the generated file.
+
 ### Loaders
 ### Plugins
 
 &ensp;&ensp; If you want to change default profile name, you can configur in package.json.
 ```bash
+
 ```
