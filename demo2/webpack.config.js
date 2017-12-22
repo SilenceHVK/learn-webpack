@@ -5,7 +5,7 @@ const path = require('path');
 
 
 const config = {
-    entry: './main.js',
+    entry: path.resolve(__dirname,'main.js'),
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -22,7 +22,7 @@ const config = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: './index.html' })
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname,'index.html') })
     ]
 }
 

@@ -4,7 +4,8 @@
   "description": "example code for learning webpack(用于学习 Webpack 的实例代码)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config demo2/webpack.config.js --progress --display-modules"
   },
   "repository": {
     "type": "git",
