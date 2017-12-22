@@ -100,14 +100,103 @@ The output property tells webpack where to emit the bundles it creates and how t
 ```
 The output.path property is used to specify the path to the generated file, and output.filename is used to specify the name of the generated file.
 
-////This is a webpack plugin that simplifies creation of HTML files to serve your webpack bundles
 ### Loaders
+Loaders enable webpack to process more than just JavaScript files (webpack itself only understands JavaScript). They give you the ability to leverage webpack's bundling capabilities for all kinds of files by converting them to valid modules that webpack can process.
 
+At a high level, loaders have two purposes in your webpack config. They work to:
+1. Identify which file or files should be transformed by a certain loader (with the test property).
+2. Transform those files so that they can be added to your dependency graph (and eventually your bundle). (use property)
 
+Before we start the following code,we need to install the [style-loader](https://www.npmjs.com/package/style-loader) and [css-loader](https://www.npmjs.com/package/css-loader).
+```bash
+    $ npm install --save-dev style-loader css-loader
+```
+
+And Create the style.css style file in the project:
+```css
+    h1{ color: red; }
+```
+
+Then enter the following code in webpack.config.js
+```javascript
+    const path = require('path');
+
+    module.exports = {
+        entry: "./main.js",
+        output: {
+            path: path.resolve(__dirname,'dist'),
+            filename: 'bundle.js'
+        },
+        model: {
+           rules: [
+               {
+                   test: /\.css$/,
+                   use:[
+                       { loader: 'style-loader' },
+                       { loader: 'css-loader' }
+                   ]
+               }
+           ]
+        }
+    }
+```
 
 ### Plugins
+While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks. Plugins range from bundle optimization and minification all the way to defining environment-like variables. The plugin interface is extremely powerful and can be used to tackle a wide variety of tasks.
 
-If you want to change default profile name, you can configur in package.json.
+In order to use a plugin, you need to require() it and add it to the plugins array. Most plugins are customizable through options. Since you can use a plugin multiple times in a config for different purposes, you need to create an instance of it by calling it with the new operator.
+
+Before we start the following code,we need to install the [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) ：
 ```bash
-
+    $ npm install html-webpack-plugin --save-dev
 ```
+This is a webpack plugin that simplifies creation of HTML files to serve your webpack bundles.
+
+Then enter the following code in webpack.config.js.
+```javascript
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    const path = require('path');
+
+    const config = {
+        entry: './main.js',
+        output: {
+            path: path.resolve(__dirname,'dist'),
+            filename: 'bundle.js'
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: [
+                        { loader: 'style-loader'},
+                        { loader: 'css-loader' }
+                    ]
+                }
+            ]
+        },
+        plugins: [
+            new HtmlWebpackPlugin({ template: './index.html' })
+        ]
+    };
+
+    module.exports = config;
+```
+
+### Run and configure
+Finally,we can compile and pack directly through the webpack command.If you want to add parameters after its command, you can configure script properties in package.json.
+```json
+    {
+        scripts: {
+            "build": "webpack --config webpack.config.js --progress --display-modules"
+        }
+    }
+```
+
+Of course,if you want to change the default configuration file name, --config webpack.config.js configuration file name changed to your custom name.
+
+TThrough the following command executio:
+```bash
+    $ npm run build
+```
+
+
