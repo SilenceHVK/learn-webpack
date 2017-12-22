@@ -128,7 +128,7 @@ Then enter the following code in webpack.config.js
             filename: 'bundle.js'
         },
         model: {
-           rules: [
+           rules: [
                {
                    test: /\.css$/,
                    use:[
