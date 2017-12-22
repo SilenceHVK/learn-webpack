@@ -1,8 +1,10 @@
 'use strict';
 
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
-module.exports = {
+
+const config = {
     entry: './main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -18,5 +20,10 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({ template: './index.html' })
+    ]
 }
+
+module.exports = config;

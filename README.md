@@ -82,13 +82,13 @@ You can configure the entry property in webpack.config.js to specify an entry of
 ```javascript
     module.exports = {
         entry: './path/entryFile.js'
-    }
+    };
 ```
 
 ### Output
 The output property tells webpack where to emit the bundles it creates and how to name these files. You can configure this part of the process by specifying an output field in your configuration:
 ```javascript
-    const path = require('path')
+    const path = require('path');
 
     module.exports = {
         entry: './path/entryFile.js',
@@ -96,10 +96,11 @@ The output property tells webpack where to emit the bundles it creates and how t
             path: path.resolve(__dirname,'dist'),
             filename: 'my-webpack.bundle.js'
         }
-    }
+    };
 ```
 The output.path property is used to specify the path to the generated file, and output.filename is used to specify the name of the generated file.
 
+////This is a webpack plugin that simplifies creation of HTML files to serve your webpack bundles
 ### Loaders
 
 
