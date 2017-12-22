@@ -194,7 +194,7 @@ Finally,we can compile and pack directly through the webpack command.If you want
 
 Of course,if you want to change the default configuration file name, --config webpack.config.js configuration file name changed to your custom name.
 
-TThrough the following command executio:
+Through the following command executio:
 ```bash
     $ npm run build
 ```
