@@ -199,4 +199,4 @@ Through the following command executio:
     $ npm run build
 ```
 
-## Multiple entry settings and html-webpack-pugin details 插件详解（[Demo3 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo3))
+## Multiple entry settings and html-webpack-pugin details（[Demo3 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo3))
