@@ -199,4 +199,4 @@ Through the following command executio:
     $ npm run build
 ```
 
-## 多入口设置与 html-webpack-pugin 插件详解（[Demo3 Source]())
+## 多入口设置与 html-webpack-pugin 插件详解（[Demo3 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo3))
