@@ -272,3 +272,164 @@ webpack.config.js
     
     module.exports = config;
 ```
+After completing the above code work, run the webapck command, and we open index.html in the dist file.
+![index.html The result of the operation](http://img.blog.csdn.net/20171224151429711?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHZrQ29kZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+The result of the run is not what we expected to show the contents of h1  before, h2 after the content, open the generated index.html source:
+```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>demo3</title>
+    </head>
+    <body>
+        <script type="text/javascript" src="bundle2.js"></script>
+        <script type="text/javascript" src="bundle1.js"></script>
+    </body>
+    </html>
+```
+
+From the source can be learned, first introduced  bundle2.js file, which is  main2.js content, after the introduction of  bundle1.js file, That is  main1.js content.
+
+We did not enter any code in the index.html to import JavaScript files, so how to import the generated files using webpack is how to import JavaScript files. In fact, the index.html generated for us via [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin).
+
+### html-webpack-plugin parameters in detail
+Through the introduction of npm, [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a webpack plug-in that simplifies the creation of HTML files for our webpack package Service that contains a parameter that changes the name of each compiled file. Use lodash templates to provide our own templates or use our own loader.
+
+You can pass a hash of configuration options to HtmlWebpackPlugin. Allowed values are as follows:
+- title: The title to use for the generated HTML document.
+- filename: The file to write the HTML to. Defaults to index.html. You can specify a subdirectory here too (eg: assets/admin.html).
+- template: Webpack require path to the template. Please see the [docs](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md) for details.
+- inject: true | 'head' | 'body' | false Inject all assets into the given template or templateContent - When passing true or 'body' all javascript resources will be placed at the bottom of the body element. 'head' will place the scripts in the head element.
+- favicon: Adds the given favicon path to the output html.
+- minify: {...} | false Pass [html-minifier](https://github.com/kangax/html-minifier#options-quick-reference)'s options as object to minify the output.
+- hash: true | false if true then append a unique webpack compilation hash to all included scripts and CSS files. This is useful for cache busting.
+- cache: true | false if true (default) try to emit the file only if it was changed.
+- showErrors: true | false if true (default) errors details will be written into the HTML page.
+- chunks: Allows you to add only some chunks (e.g. only the unit-test chunk)
+- chunksSortMode: Allows to control how chunks should be sorted before they are included to the html. Allowed values: 'none' | 'auto' | 'dependency' |'manual' | {function} - default: 'auto'，Please see the [docs](https://github.com/jantimon/html-webpack-plugin/issues/481)
+- excludeChunks: Allows you to skip some chunks (e.g. don't add the unit-test chunk)
+- xhtml: true | false If true render the link tags as self-closing, XHTML compliant. Default is false
+
+Now that we know the parameters in [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin), let's modify the contents of webpack.config.js:
+```javascript
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    const path = require('path');
+
+    const config = {
+        entry: {
+            bundle1: path.resolve(__dirname,'main1.js'),
+            bundle2: path.resolve(__dirname,'main2.js')
+        },
+        output: {
+            path: path.resolve(__dirname, 'dist'),
+            filename: '[name].js'
+        },
+        module: {
+            rules: [
+                { test: /\.css$/, loader: 'style-loader!css-loader' }
+            ]
+        },
+        plugins: [
+            new HtmlWebpackPlugin({ 
+                title: 'multiple entry',
+                filename: 'index.html',
+                template: path.resolve(__dirname,'index.html'), 
+                inject: true, 
+                favicon: path.resolve(__dirname,'favicon.ico'), 
+                minify: {
+                    caseSensitive: false,
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true
+                },
+                hash: true, 
+                cache: true, 
+                showErrors: true, 
+                chunks: [ 'bundle1', 'bundle2' ], 
+                // excludeChunks:[ 'bundle1' ],
+                chunksSortMode: function(chunk1,chunk2){
+                    var orders = [ 'bundle1' , 'bundle2' ];
+                    var order1 = orders.indexOf(chunk1.names[0]);
+                    var order2 = orders.indexOf(chunk2.names[0]);
+                    return order1 - order2;
+                },
+                xhtml: false
+            })
+        ]
+    };
+
+    module.exports = config;
+```
+
+After completing the above code work, run the webapck command, and we open index.html in the dist file.
+![index.html The result of the operation](http://img.blog.csdn.net/20171224152505047?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHZrQ29kZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+Nice! Is consistent with our expectation. In the introduction to [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin), I mentioned the lodash template, so how do you use it? We modify the contents of webpack.config.js again, passing the Date parameter to HtmlWebpackPlugin:
+```javascript
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    const path = require('path');
+
+    const config = {
+        entry: {
+            bundle1: path.resolve(__dirname,'main1.js'),
+            bundle2: path.resolve(__dirname,'main2.js')
+        },
+        output: {
+            path: path.resolve(__dirname, 'dist'),
+            filename: '[name].js'
+        },
+        module: {
+            rules: [
+                { test: /\.css$/, loader: 'style-loader!css-loader' }
+            ]
+        },
+        plugins: [
+            new HtmlWebpackPlugin({ 
+                date: new Date(),
+                title: 'multiple entry',
+                filename: 'index.html',
+                template: path.resolve(__dirname,'index.html'), 
+                inject: true, 
+                favicon: path.resolve(__dirname,'favicon.ico'), 
+                minify: {
+                    caseSensitive: false,
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true
+                },
+                hash: true, 
+                cache: true, 
+                showErrors: true, 
+                chunks: [ 'bundle1', 'bundle2' ], 
+                // excludeChunks:[ 'bundle1' ],
+                chunksSortMode: function(chunk1,chunk2){
+                    var orders = [ 'bundle1' , 'bundle2' ];
+                    var order1 = orders.indexOf(chunk1.names[0]);
+                    var order2 = orders.indexOf(chunk2.names[0]);
+                    return order1 - order2;
+                },
+                xhtml: false
+            })
+        ]
+    };
+
+    module.exports = config;
+```
+
+Change the content of index.html, lodash The default template support is the syntax of ejs template:
+```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>demo3</title>
+    </head>
+    <body>
+        <%= htmlWebpackPlugin.options.date %>
+    </body>
+    </html>
+```

@@ -669,7 +669,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var h2 = document.createElement('h2');
-h2.innerText = '这是 main2.js 中的内容';
+h2.innerText = 'This is the main1.js content';
 document.body.appendChild(h2);
 
 /***/ })
