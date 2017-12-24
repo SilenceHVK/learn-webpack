@@ -433,3 +433,9 @@ Change the content of index.html, lodash The default template support is the syn
     </body>
     </html>
 ```
+
+After completing the above code work, run the webapck command, and we open index.html in the dist file.
+![index.html The result of the operation](http://img.blog.csdn.net/20171224154652868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHZrQ29kZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+
+By running the results, we can find the output of the current time at the top, which is the HtmlWebpackPlugin incoming parameters, in fact, the parameters in the HtmlWebpackPlugin htmlWebpackPlugin.options. Parameter name output, I will not list them all.
