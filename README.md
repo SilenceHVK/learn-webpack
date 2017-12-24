@@ -246,3 +246,29 @@ main2.js
     document.body.appendChild(h2);
 ```
 
+webpack.config.js
+```javascript
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    const path = require('path');
+    
+    const config = {
+        entry: {
+            bundle1: './main1.js',
+            bundle2: './main2.js',
+        },
+        output: {
+            path: path.resolve(__dirname,'dist'),
+            filename: '[name].js'
+        },
+        module: {
+            rules: [
+                { test: /\.css$/, loader: 'style-loader!css-loader' }
+            ]
+        },
+        pugins: [
+            new HtmlWebpackPlugin({ template: './index.html' })
+        ]
+    };
+    
+    module.exports = config;
+```
