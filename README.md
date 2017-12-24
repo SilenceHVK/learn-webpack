@@ -200,3 +200,49 @@ Through the following command executio:
 ```
 
 ## Multiple entry settings and html-webpack-pugin details（[Demo3 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo3))
+
+We can specify multiple entries for the entry. Before we start the code, we need to create the following directory deconstructio.
+
+<pre>
+.        
+├── index.html            // 显示的页面
+├── main1.js             // webpack 入口1
+├── main1.js            // webpack 入口2
+├── style.css          // 样式文件
+└── webpack.config.js // webpack 中默认的配置文件
+</pre>
+
+index.html
+```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>demo3</title>
+    </head>
+    <body>
+        
+    </body>
+    </html>
+```
+
+main1.js
+```javascript
+    import './style.css'
+
+    var h1 = document.createElement('h1');
+    h1.innerText = 'This is the main1.js content';
+    document.body.appendChild(h1);
+```
+
+main2.js
+```javascript
+    import './style.css'
+
+    var h2 = document.createElement('h2');
+    h2.innerText = 'This is the main2.js content';
+    document.body.appendChild(h2);
+```
+
