@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config demo3/webpack.config.js --progress --display-modules"
+    "build": "webpack --config demo4/webpack.config.js --progress --display-modules"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/SilenceHVK/learn-webpack#readme",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.7",
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.19.1",
