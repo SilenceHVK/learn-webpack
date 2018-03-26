@@ -439,13 +439,3 @@ After completing the above code work, run the webapck command, and we open index
 
 
 By running the results, we can find the output of the current time at the top, which is the HtmlWebpackPlugin incoming parameters, in fact, the parameters in the HtmlWebpackPlugin htmlWebpackPlugin.options. Parameter name output, I will not list them all.
-
-## Use babel-loader to convert ES6 Code（[Demo4 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo4))
-
-&ensp;&ensp;[Babel-loader](https://www.npmjs.com/package/babel-loader) this package allows transpiling JavaScript files using Babel and webpack.
-
-&ensp;&ensp;Through the following command to install:
-
-```bash
-    $ npm install --save-dev babel-loader babel-core babel-preset-env
-```
