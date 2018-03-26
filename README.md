@@ -1,5 +1,31 @@
 # Learn-Webpack [阅读中文](https://github.com/SilenceHVK/articles/issues/20)
 
+## How to use
+
+1. Clone to local project and enter the file
+```bash
+	$ git clone https://github.com/SilenceHVK/learn-webpack.git && cd learn-webpack
+```
+
+2. Installation project depends
+```bash
+	$ npm install
+```
+
+3. Modify the run file script in package.json,for example
+```json
+	{
+        scripts: {
+            "build": "webpack --config demo1/webpack.config.js --progress --display-modules --colors"
+        }
+    }
+```
+
+4. Run with commands
+```bash
+	$ npm run build
+```
+
 ## About Webpack 
 Webpack is module loader developed by German developer Tobias Koppers.
 
