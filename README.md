@@ -465,3 +465,12 @@ After completing the above code work, run the webapck command, and we open index
 
 
 By running the results, we can find the output of the current time at the top, which is the HtmlWebpackPlugin incoming parameters, in fact, the parameters in the HtmlWebpackPlugin htmlWebpackPlugin.options. Parameter name output, I will not list them all.
+
+## webpack-dev-server and hot module replacement
+
+[Webpack-dev-server](https://webpack.js.org/guides/development/#using-webpack-dev-server) is a simple web server officially provided by webpack. It can reload pages in real time.
+
+Use the following command to install [webpack-dev-server](hhttps://www.npmjs.com/package/webpack-dev-server)
+```bash
+    $ webpack-dev-server --config webpack.config.js
+```
