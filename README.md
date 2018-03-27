@@ -470,7 +470,7 @@ By running the results, we can find the output of the current time at the top, w
 
 [Webpack-dev-server](https://webpack.js.org/guides/development/#using-webpack-dev-server) is a simple web server officially provided by webpack. It can reload pages in real time.
 
-Use the following command to install [webpack-dev-server](hhttps://www.npmjs.com/package/webpack-dev-server)
+Use the following command to install [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server)
 ```bash
     $ npm install --save-dev webpack-dev-server
 ```
