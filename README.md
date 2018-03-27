@@ -472,5 +472,5 @@ By running the results, we can find the output of the current time at the top, w
 
 Use the following command to install [webpack-dev-server](hhttps://www.npmjs.com/package/webpack-dev-server)
 ```bash
-    $ webpack-dev-server --config webpack.config.js
+    $ npm install --save-dev webpack-dev-server
 ```
