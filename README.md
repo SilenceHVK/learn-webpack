@@ -14,7 +14,7 @@
 
 3. Modify the run file script in package.json,for example
 ```json
-	{
+   {
         scripts: {
             "build": "webpack --config demo1/webpack.config.js --progress --display-modules --colors"
         }
