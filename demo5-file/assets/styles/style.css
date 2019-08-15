@@ -1,0 +1,15 @@
+div {
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+div.img1 {
+  background-image: url('../images/butterfly.png');
+}
+
+div.img2 {
+  background-image: url('../images/miku.jpg');
+}

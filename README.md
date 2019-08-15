@@ -611,3 +611,83 @@ npm i @babel/plugin-transform-runtime --save-dev
 ```
 
 **@babel/runtime 的 polyfill 对象是临时构造并 import/require 的，因此并不是真正的全局引用，由于不是全局引用，对于实例化对象的方法，并不能生效。比较适合编写 第三方类库。**
+
+## 文件操作
+
+`file-loader` 可以解析项目中的 url 引入（不禁限于 CSS），根据配置，将图片拷贝到相应路径，并修改打包后文件的引用路径。
+
+```json
+{
+  "test": /\.(png|jpe?g|gif)$/,
+  "loader": "file-loader",
+  "options": {
+    // 输出文件名称，默认为：'[hash].[ext]'
+    "name": "[name].[hash:8].[ext]",
+    // 指定输出文件存放路径，默认为当前目录
+    "outputPath": "assets/images",
+    // 指定输出文件 公共路径
+    // publicPath: '../',
+    // 如果是 true，生成一个文件（向文件系统写入一个文件）。 如果是 false，loader 会返回 public UR不会生成文件
+    "emitFile": true
+  }
+}
+```
+
+`url-loader` 与 `file-loader` 的作用是一样的，但是 `url-loader` 可以通过 `limit` 配置限制输出大小，如果小于 limit 字节的文件会被转成 Base64 编码，大于则会拷贝文件。
+
+```json
+{
+  "test": /\.(png|jpe?g|gif)$/,
+  "loader": "url-loader",
+  "options": {
+    // 限制输出文件大小，如果输出文件小于该限制，则被转成 base64 编码，大于则会拷贝文件
+    "limit": 1024,
+    // 输出文件名称，默认为：'[hash].[ext]'
+    "name": "[name].[hash:8].[ext]",
+    // 指定输出文件存放路径，默认为当前目录
+    "outputPath": "assets/images"
+    // 指定输出文件 公共路径
+    // publicPath: '../',
+  }
+}
+```
+
+`img-loader` 可以压缩图片，也可以使用 `image-webpack-loader` 代替。
+
+```bash
+npm i -D img-loader imagemin imagemin-gifsicle imagemin-mozjpeg imagemin-pngquant imagemin-svgo
+```
+
+插件具体参数可以查看 github
+
+- [imagemin-gifsicle](https://github.com/imagemin/imagemin-gifsicle)
+- [imagemin-mozjpeg](https://github.com/imagemin/imagemin-mozjpeg)
+- [imagemin-pngquant](https://github.com/imagemin/imagemin-pngquant)
+- [imagemin-svgo](https://github.com/imagemin/imagemin-svgo)
+
+```json
+{
+  "loader": "img-loader",
+  "options": {
+    "plugins": [
+      require("imagemin-gifsicle")({}),
+      require("imagemin-mozjpeg")({}),
+      require("imagemin-pngquant")({}),
+      require("imagemin-svgo")({})
+    ]
+  }
+}
+```
+
+`html-loader` 可以设置 html 中的某些片段是要交给 webpack 处理的。
+
+```json
+{
+  "test": /\.html$/,
+  "loader": "html-loader",
+  "options": {
+    // 设置交由 webpack 处理的属性
+    "attrs": ["img:src", "img:data-src"]
+  }
+}
+```
