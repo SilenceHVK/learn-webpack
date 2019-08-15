@@ -1,5 +1,5 @@
 const path = require('path');
-
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -72,7 +72,20 @@ module.exports = {
           attrs: ['img:src', 'img:data-src'],
         },
       },
+      {
+        test: /\.js$/,
+        loader: 'imports-loader',
+        options: {
+          $: 'jquery',
+        },
+      },
     ],
+  },
+  resolve: {
+    alias: {
+      // 通过定义别名的方式 指定本地文件路径，$：表示将 jquery 关键字解析到某个目录的文件下，不是解析某个目录
+      jquery$: resolve('./lib/jquery.min.js'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -80,5 +93,10 @@ module.exports = {
       template: resolve('./index.html'),
     }),
     new CleanWebpackPlugin(),
+    // new webpack.ProvidePlugin({
+    //   // $: 'jquery', // 导入 npm 依赖包
+    //   // $: ['./lib/jquery.min.js'], // 指定本地文件路径
+    //   $: 'jquery',
+    // }),
   ],
 };

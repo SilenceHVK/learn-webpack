@@ -21,9 +21,11 @@
     "imagemin-pngquant": "^8.0.0",
     "imagemin-svgo": "^7.0.0",
     "img-loader": "^3.0.1",
+    "imports-loader": "^0.8.0",
     "style-loader": "^1.0.0",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6"
-  }
+  },
+  "dependencies": {}
 }

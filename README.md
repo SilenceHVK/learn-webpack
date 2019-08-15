@@ -691,3 +691,42 @@ npm i -D img-loader imagemin imagemin-gifsicle imagemin-mozjpeg imagemin-pngquan
   }
 }
 ```
+
+当我们在使用第三方库时，如果每个模块都用到了它，但我们并不想在每个模块中重复去写 `import` 或 `require`
+，我们可以使用下面两种方式：
+
+- `webpack.ProvidePlugin`
+
+```json
+{
+  "resolve": {
+    "alias": {
+      // 定义别名 指定本地文件路径，$ 表示将 jquery 关键字解析到某个目录的文件下，而不是解析某个目录
+      "jquery$": path.join(__dirname, "./lib/jquery.min.js")
+    }
+  },
+  "plugins": [
+    new webpack.ProvidePlugin({
+      // "$": "jquery", // 导入 npm 依赖包
+      // "$": ["./lib/jquery.min.js"] // 指定本地文件路径
+      "$": "jquery"
+    })
+  ]
+}
+```
+
+- `imports-loader`
+
+```bash
+npm i imports-loader
+```
+
+```json
+{
+  "test": /\.js$/,
+  "loader": "imports-loader",
+  "options": {
+    "$": "jquery"
+  }
+}
+```
