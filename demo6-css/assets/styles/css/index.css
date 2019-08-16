@@ -1,0 +1,27 @@
+:root {
+  --red: #f00;
+}
+.media {
+  display: flex;
+  margin-top: 13px;
+  height: calc(100px - 20px);
+  background-color: var(--red);
+}
+
+.media-left {
+  width: 64px;
+  height: 64px;
+  background: url('../../images/thumb.svg') no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.media-left:hover {
+  transform: rotate(180deg);
+}
+
+.media-body {
+  margin-left: 10px;
+  height: 64px;
+  line-height: 64px;
+}

@@ -484,7 +484,7 @@ module.exports = config;
 
 &ensp;&ensp;通过运行结果，我们可以发现在顶部输出了当前时间，也就是 `HtmlWebpackPlugin` 传入的参数，实际上 `HtmlWebpackPlugin` 中的参数都可以通过 `htmlWebpackPlugin.options.参数名称` 输出，我就不一一列举。
 
-## Babel
+## Babel （[Demo4 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo4-babel)）
 
 &ensp;&ensp;Babel 是一个工具链，主要用于在旧的浏览器或环境中将 ECMAScript 2015+ 代码转换为向后兼容版本的 JavaScript 代码。
 
@@ -612,7 +612,7 @@ npm i @babel/plugin-transform-runtime --save-dev
 
 **@babel/runtime 的 polyfill 对象是临时构造并 import/require 的，因此并不是真正的全局引用，由于不是全局引用，对于实例化对象的方法，并不能生效。比较适合编写 第三方类库。**
 
-## 文件操作
+## 文件操作（[Demo5 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo5-file)）
 
 `file-loader` 可以解析项目中的 url 引入（不禁限于 CSS），根据配置，将图片拷贝到相应路径，并修改打包后文件的引用路径。
 
@@ -727,6 +727,168 @@ npm i imports-loader
   "loader": "imports-loader",
   "options": {
     "$": "jquery"
+  }
+}
+```
+
+## CSS（[Demo6 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo5-css)）
+
+`mini-css-extract-plugin` 能够将 CSS 提取到单独的文件中，它为每个包含 CSS 的 JS 文件创建了一个 CSS 文件。
+
+```bash
+npm install --save-dev mini-css-extract-plugin
+```
+
+```javascript
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+```
+
+```json
+{
+  "module": {
+    "rules": {
+      "test": /\.css$/,
+      "use": [
+        // mini-css-extract-plugin 只能用于生产环境，因此在 loader 中需要加入一个判断
+        process.env.NODE_ENV === "development"
+          ? "style-loader"
+          : {
+              "loader": MiniCssExtractPlugin.loader,
+              "options": {
+                // CSS 样式用的背景图片 会与抽取后的 CSS 文件路径有冲突，在此设置公共相对路径
+                "publicPath": "../../"
+              }
+            }
+      ]
+    }
+  },
+  "plugins": [
+    new MiniCssExtractPlugin({
+      // 用于设置提取的 CSS 文件名称与存储路径
+      "filename": "assets/styles/[name].[hash:8].css",
+      // 用于设置异步加载 CSS 文件名称与存储路径，例如： import('./assets/styles/test.js')
+      "chunkFilename": "assets/styles/[id].[chunkhash:8].css"
+    })
+  ]
+}
+```
+
+`optimize-css-assets-webpack-plugin` 能够压缩 CSS 文件大小。
+
+```bash
+npm install --save-dev optimize-css-assets-webpack-plugin
+```
+
+```javascript
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+```
+
+```json
+{
+  "plugins": [
+    new OptimizeCssAssetsPlugin({
+      // 匹配需要压缩的 CSS 文件正则，默认为 /\.css$/g
+      // assetNameRegExp: /\.optimize\.css$/g,
+      // 设置 CSS 压缩工具 默认使用的是  cssnano
+      // cssProcessor: require('cssnano'),
+      // 设置 CSS 压缩工具的 options ,默认 {}
+      // cssProcessorOptions: {},
+      // 设置 CSS 压缩工具插件的 options， 默认 {}
+      // cssProcessorPluginOptions: {},
+      // 插件输出信息是否输出在控制台，默认 true
+      // canPrint: true,
+    })
+  ]
+}
+```
+
+[PostCSS](https://github.com/postcss/postcss) 是一个允许使用 JS 插件转换样式的工具。
+
+```bash
+npm install postcss postcss-loader --save-dev
+```
+
+- `autoprefixer` 添加了 vendor 浏览器前缀，它使用 Can I Use 上面的数据。
+
+```bash
+npm install autoprefixer --save-dev
+```
+
+```json
+{
+  "module": {
+    "rules": [
+      {
+        "test": /\.css$/,
+        "use": [
+          "style-loader",
+          "css-loader",
+          {
+            "loader": "postcss-loader",
+            "options": {
+              "ident": "postcss",
+              plugins:[
+                require('autoprefixer')({
+                  // 设置兼容浏览器版本
+                  "browsers": ['last 2 versions'],
+                })
+              ]
+              "sourceMap": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+不难发现 autoprefixer 中需要配置 `browsers`，Babel 中也需要配置，我们可以通过下面两种方法配置：
+
+- package.json
+
+```json
+  "browserslist": [
+    "last 2 version"
+  ]
+```
+
+- .browserslistrc
+
+```
+last 2 version
+```
+
+- `postcss-preset-env` 能够转换还未兼容 CSS 例如 `--color 变量`。
+
+**postcss-preset-env 中已经引入了 autoprefixer，因此使用它的时候可以不用引入 autoprefixer。**
+
+```bash
+npm install postcss-preset-env --save-dev
+```
+
+```json
+{
+  "module": {
+    "rules": [
+      {
+        "test": /\.css$/,
+        "use": [
+          "style-loader",
+          "css-loader",
+          {
+            "loader": "postcss-loader",
+            "options": {
+              "ident": "postcss",
+              plugins:[
+                require('postcss-preset-env')
+              ]
+              "sourceMap": true
+            }
+          }
+        ]
+      }
+    ]
   }
 }
 ```
