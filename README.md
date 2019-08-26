@@ -892,3 +892,60 @@ npm install postcss-preset-env --save-dev
   }
 }
 ```
+
+## Webpack 打包优化([Demo7 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo7-optimize)）
+
+- 提取公共代码：减少代码冗余，提高用户下载代码带宽。
+
+Webpack 4 提供了内置插件 `webpack.SplitChunksPlugin`
+
+```json
+{
+  "optimization": {
+    "splitChunks": {
+      /**
+       * 拆分块的名称：boolean: true | function (module, chunks, cacheGroupKey) | string
+       * 如果为 true 将自动生成基于块和缓存组密钥的名称，生产环境下建议 false 避免更改名称
+       * 如果是一个函数允许自定义名称，不推荐，容易造成代码下载冗余
+       */
+      "name": false,
+      "automaticNameDelimiter": "~", // 用于指定生成名称的分隔符
+      "chunks": "initial", // 用于指定那些模块需要分割， 可选项 "initial"（初始化） | "all"(默认) | "async"（动态加载）
+      "maxAsyncRequests": 1, // 按需加载时的最大并行请求数。
+      "maxInitialRequests": 1, // 入口点处的最大并行请求数。
+      "minChunks": 1, // 分割前必须共享模块的最小块数。
+      // 缓存组会继承splitChunks的配置，但是test、priorty和reuseExistingChunk只能用于配置缓存组。
+      "cacheGroups": {
+        // 自定义缓存组属性
+        "vendors": {
+          "test": /[\\/]node_modules[\\/]/, // 控制此缓存组选择的模块，使用正则表达式匹配
+          "filename": "venders", // 拆分出块的名称
+          "reuseExistingChunk": true, // 可设置是否重用已用chunk 不再创建新的chunk
+          "priority": "0" // 优先级高的chunk为被优先选择,优先级一样的话，size大的优先被选择
+          // enforce: true, // 忽略外部 maxAsyncRequests、maxInitialRequests、minSize、minChunks 始终以 缓存组配置执行
+        }
+      }
+    }
+  }
+}
+```
+
+- 代码分割与懒加载：能够在最短的时间内，展示页面。通过动态加载模块的方式实现。
+
+  - webpack 内置 methods
+
+        /**
+         * 动态引入 模块
+         * dependencies: [] 需要加载的模块，并不会执行，需要在回调函数中 require
+         * callback: 回调函数，执行动态加载模块的方法
+         * errorCallback: 错误回调，可以省略
+         * chunkName: 拆分块名称
+         */
+        require.ensure(dependencies, callback, errorCallback, chunkName)
+
+        // 只接收引入的模块 而不执行，当两个子模块同时依赖一个模块，可以通过这种引用将公共模块提前引入到父模块中
+        require.include(dependencies)
+
+  - ES2015 Loader 规范
+
+        import(/* webpackChunkName: 生成的 chunk 名称 */).then() // 此时引入的 模块已经执行
