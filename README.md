@@ -3,7 +3,7 @@
 &ensp;&ensp; webpack 是德国开发者 Tobias Koppers 开发的**模块加载器**。
 
 &ensp;&ensp;在 webpack 中所有的文件都将被当做模块使用。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有的这些模块打包成一个或多个 bundle。如图所示：
-![webpack能做什么](https://github.com/SilenceHVK/Articles/raw/master/assets/images/learn-webpack/what-is-webpack.png)
+![webpack能做什么](https://segmentfault.com/img/remote/1460000012521140?w=2598&h=1299)
 
 ## 与 Gulp/Grunt 对比
 
@@ -11,11 +11,11 @@
 
 &ensp;&ensp;Grunt 和 Gulp 的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。
 
-![Grunt和Gulp工作图](https://github.com/SilenceHVK/Articles/raw/master/assets/images/learn-webpack/gulp-grunt.png)
+![Grunt和Gulp工作图](https://segmentfault.com/img/remote/1460000012521141?w=1240&h=446)
 
 &ensp;&ensp;webpack 的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack 将从这个文件开始找到你的项目的所有依赖文件，使用 loaders 处理它们，最后打包为一个（或多个）浏览器可识别的 JavaScript 文件。
 
-![webpack工作图](https://github.com/SilenceHVK/Articles/raw/master/assets/images/learn-webpack/webpack-work-charts.png)
+![webpack工作图](https://segmentfault.com/img/remote/1460000012521142?w=700&h=306)
 
 ## webpack 的安装及使用 （[Demo1 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo1)）
 
@@ -301,7 +301,7 @@ module.exports = config;
 ```
 
 &ensp;&ensp;完成上面的代码工作后，运行 `webapck` 命令，我们打开 `dist` 文件中的 `index.html`。
-![index.html 运行结果](https://github.com/SilenceHVK/Articles/raw/master/assets/images/learn-webpack/demo3-the-result-of-the-operation-1.png)
+![index.html 运行结果](https://segmentfault.com/img/remote/1460000012560007?w=1306&h=336)
 
 运行的结果并不是我们预期的那样展示 `h1` 的内容在前，`h2` 内容在后，打开生成后的 `index.html` 源码：
 
@@ -403,7 +403,7 @@ module.exports = config;
 ```
 
 &ensp;&ensp;完成上面的代码工作后，运行 `webapck` 命令，我们打开 dist 文件中的 index.html。
-![index.html 运行结果](https://github.com/SilenceHVK/Articles/raw/master/assets/images/learn-webpack/demo3-the-result-of-the-operation-2.png)
+![index.html 运行结果](https://segmentfault.com/img/remote/1460000012560008?w=896&h=276)
 &ensp;&ensp;Nice!与我们的预期效果显示一致。在对 [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) 的介绍中，提到了 `lodash` 模板, 那么该怎么用呢？我们再次修改 `webpack.config.js` 中的内容，为 `HtmlWebpackPlugin` 传入 `Date` 参数:
 
 ```javascript
@@ -480,11 +480,11 @@ module.exports = config;
 ```
 
 &ensp;&ensp;完成上面的代码工作后，运行 `webapck` 命令，我们打开 dist 文件中的 index.html。
-![index.html 运行结果](https://github.com/SilenceHVK/Articles/raw/master/assets/images/learn-webpack/demo3-the-result-of-the-operation-3.png)
+![index.html 运行结果](https://segmentfault.com/img/remote/1460000012560009?w=916&h=324)
 
 &ensp;&ensp;通过运行结果，我们可以发现在顶部输出了当前时间，也就是 `HtmlWebpackPlugin` 传入的参数，实际上 `HtmlWebpackPlugin` 中的参数都可以通过 `htmlWebpackPlugin.options.参数名称` 输出，我就不一一列举。
 
-## Babel （[Demo4 Source](https://github.com/SilenceHVK/learn-webpack/tree/master/demo4-babel)）
+## Babel
 
 &ensp;&ensp;Babel 是一个工具链，主要用于在旧的浏览器或环境中将 ECMAScript 2015+ 代码转换为向后兼容版本的 JavaScript 代码。
 
